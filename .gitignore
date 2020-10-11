@@ -5,6 +5,7 @@
 /.project
 /.settings
 /.vscode
+/auth.json
 /nbproject
 /robots.txt
 /pub/robots.txt
