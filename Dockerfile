@@ -1,32 +1,32 @@
 FROM debian:buster-slim
 
 ENV USER_ID='1000' \
-    USER_GROUP='1000' \
-    KUBERNETES_NAMESPACE='local' \
-    KUBERNETES_NODE='local' \
-    KUBERNETES_POD='magento' \
-    MAGE_MODE='developer' \
-    MAGE_RUN_CODE='base' \
-    MAGE_RUN_TYPE='website' \
-    MYSQL_HOST='mysql' \
-    MYSQL_PORT='3306' \
-    MYSQL_USER='www-data' \
-    MYSQL_PASSWORD='www-password' \
-    MYSQL_DATABASE='magento' \
-    REDIS_SESSION_HOST='redis-session' \
-    REDIS_SESSION_PORT='6379' \
-    REDIS_CACHE_HOST='redis-cache' \
-    REDIS_CACHE_PORT='6379' \
-    SMTP_HOST='mailhog' \
-    SMTP_PORT='1025' \
-    ELASTICSEARCH_HOST='elasticsearch' \
-    ELASTICSEARCH_PORT='9200' \
-    ELASTICSEARCH_PREFIX='bureauvalle' \
-    ELASTICSEARCH_ENABLE_AUTH='0' \
-    ELASTICSEARCH_USERNAME='www-data' \
-    ELASTICSEARCH_PASSWORD='www-password' \
-    RABBITMQ_USER='www-data' \
-    RABBITMQ_PASSWORD='www-password'
+USER_GROUP='1000' \
+KUBERNETES_NAMESPACE='local' \
+KUBERNETES_NODE='local' \
+KUBERNETES_POD='magento' \
+MAGE_MODE='developer' \
+MAGE_RUN_CODE='base' \
+MAGE_RUN_TYPE='website' \
+MYSQL_HOST='mysql' \
+MYSQL_PORT='3306' \
+MYSQL_USER='www-data' \
+MYSQL_PASSWORD='www-password' \
+MYSQL_DATABASE='magento' \
+REDIS_SESSION_HOST='redis-session' \
+REDIS_SESSION_PORT='6379' \
+REDIS_CACHE_HOST='redis-cache' \
+REDIS_CACHE_PORT='6379' \
+SMTP_HOST='mailhog' \
+SMTP_PORT='1025' \
+ELASTICSEARCH_HOST='elasticsearch' \
+ELASTICSEARCH_PORT='9200' \
+ELASTICSEARCH_PREFIX='bureauvalle' \
+ELASTICSEARCH_ENABLE_AUTH='0' \
+ELASTICSEARCH_USERNAME='www-data' \
+ELASTICSEARCH_PASSWORD='www-password' \
+RABBITMQ_USER='www-data' \
+RABBITMQ_PASSWORD='www-password'
 
 RUN apt-get update \
 &&  apt-get install -y --no-install-recommends \
@@ -91,7 +91,7 @@ RUN perms-writer \
 '/var/log/apache2' \
 '/var/www/html'
 
-COPY src /var/www/html
+COPY --chown=www-data:www-data . /var/www/html
 
 EXPOSE 8080
 
