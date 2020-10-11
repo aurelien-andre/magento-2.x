@@ -1,5 +1,7 @@
 ![magento 2](/data/magento2-logo.png)
 
+Version v2.4.x
+
 ## Install
 
 Open hosts
