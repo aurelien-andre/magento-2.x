@@ -18,7 +18,7 @@ Copy rules
 127.0.0.1       www.mailhog.lan
 ```
 
-Change auth.json.dist into auth.json with your auth information.
+Change auth.json.dist into auth.json with good data.
 
 ```json
 {
