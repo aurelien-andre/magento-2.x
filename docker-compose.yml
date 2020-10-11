@@ -116,7 +116,7 @@ services:
             - mailhog_data:/maildir:rw,delegated
 
     magento:
-        image: bureauvallee-fbi/front/frontweb:latest
+        image: magento-v2.x:latest
         environment:
             USER_ID: ${USER_ID}
             USER_GROUP: ${USER_GROUP}

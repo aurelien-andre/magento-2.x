@@ -9,7 +9,7 @@ USER_GROUP  := $(shell id -g)
 export USER_ID
 export USER_GROUP
 
-DOCKER_REGISTRY_REPOSITORY ?= bureauvallee-fbi/front/frontweb
+DOCKER_REGISTRY_REPOSITORY ?= magento-v2.x
 DOCKER_REGISTRY_TAG        ?= latest
 
 COMPOSE_MAGENTO             = docker-compose exec magento
