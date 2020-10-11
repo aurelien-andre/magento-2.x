@@ -1,5 +1,7 @@
 # Docker Magento v 2.4
 
+![magento 2](/data/magento2-logo.png)
+
 ## Install
 
 Open hosts
