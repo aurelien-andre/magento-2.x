@@ -117,23 +117,11 @@ services:
 
     magento:
         image: magento-v2.x:latest
+        env_file:
+            - .env
         environment:
             USER_ID: ${USER_ID}
             USER_GROUP: ${USER_GROUP}
-            MAGE_MODE: ${MAGE_MODE}
-            MAGE_RUN_CODE: ${MAGE_RUN_CODE}
-            MAGE_RUN_TYPE: ${MAGE_RUN_TYPE}
-            MYSQL_HOST: ${MYSQL_HOST}
-            MYSQL_PORT: ${MYSQL_PORT}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            ELASTICSEARCH_HOST: ${ELASTICSEARCH_HOST}
-            ELASTICSEARCH_PORT: ${ELASTICSEARCH_PORT}
-            ELASTICSEARCH_PREFIX: ${ELASTICSEARCH_PREFIX}
-            ELASTICSEARCH_ENABLE_AUTH: ${ELASTICSEARCH_ENABLE_AUTH}
-            RABBITMQ_USER: ${RABBITMQ_USER}
-            RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
         labels:
             - traefik.enable=true
             - traefik.http.routers.magento-bv.rule=Host(`www.magento.lan`)
