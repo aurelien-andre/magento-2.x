@@ -1,4 +1,4 @@
-![magento 2](/data/dist/logo.png)
+![magento 2](/data/dist/m2-logo.png)
 
 ## Install
 
