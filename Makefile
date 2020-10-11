@@ -11,7 +11,7 @@ export USER_ID
 export USER_GROUP
 export USERNAME
 
-DOCKER_REGISTRY_REPOSITORY ?= bureauvallee-fbi/front/frontweb
+DOCKER_REGISTRY_REPOSITORY ?= aurelienandre/magento
 DOCKER_REGISTRY_TAG        ?= latest
 
 COMPOSE_MAGENTO             = docker-compose exec magento
@@ -22,7 +22,7 @@ COMPOSE_MAGENTO_NPM			= docker-compose exec magento npm
 help:
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
-##Docker
+##DOCKER
 
 docker-build: ## Build docker image
 	docker build . -t $(DOCKER_REGISTRY_REPOSITORY):$(DOCKER_REGISTRY_TAG)
@@ -36,7 +36,7 @@ docker-up: ## Launch containers
 docker-down: ## Stop containers
 	docker-compose down
 
-##Install
+##INSTALL
 
 install-file: ## Install files dependencies
 	cp -rf src/app/etc/env.php.sample src/app/etc/env.php

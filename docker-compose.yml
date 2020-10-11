@@ -1,4 +1,4 @@
-version: '2.2'
+version: '3.8'
 
 services:
 
@@ -7,8 +7,8 @@ services:
         command: --api.insecure=true --providers.docker
         labels:
             - traefik.enable=true
-            - traefik.http.routers.traefik-bv.rule=Host(`www.traefik.lan`)
-            - traefik.http.services.traefik-bv.loadbalancer.server.port=8080
+            - traefik.http.routers.traefik.rule=Host(`www.traefik.lan`)
+            - traefik.http.services.traefik.loadbalancer.server.port=8080
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         ports:
@@ -38,7 +38,7 @@ services:
             PMA_PASSWORD: ${MYSQL_PASSWORD}
         labels:
             - traefik.enable=true
-            - traefik.http.routers.phpmyadmin-bv.rule=Host(`www.phpmyadmin.lan`)
+            - traefik.http.routers.phpmyadmin.rule=Host(`www.phpmyadmin.lan`)
         links:
             - mysql
         depends_on:
@@ -67,8 +67,8 @@ services:
         image: redislabs/redisinsight:latest
         labels:
             - traefik.enable=true
-            - traefik.http.routers.redisinsight-bv.rule=Host(`www.redisinsight.lan`)
-            - traefik.http.services.redisinsight-bv.loadbalancer.server.port=8001
+            - traefik.http.routers.redisinsight.rule=Host(`www.redisinsight.lan`)
+            - traefik.http.services.redisinsight.loadbalancer.server.port=8001
         links:
             - redis-cache
             - redis-session
@@ -86,8 +86,8 @@ services:
             - discovery.type=single-node
         labels:
             - traefik.enable=true
-            - traefik.http.routers.elasticsearch-bv.rule=Host(`www.elasticsearch.lan`)
-            - traefik.http.services.elasticsearch-bv.loadbalancer.server.port=9200
+            - traefik.http.routers.elasticsearch.rule=Host(`www.elasticsearch.lan`)
+            - traefik.http.services.elasticsearch.loadbalancer.server.port=9200
         volumes:
             # if you develop on Linux, you may use a bind-mounted host directory instead
             # - ./data/elasticsearch:/usr/share/elasticsearch/data:rw
@@ -99,8 +99,8 @@ services:
             ELASTICSEARCH_URL: ${ELASTICSEARCH_URL}
         labels:
             - traefik.enable=true
-            - traefik.http.routers.kibana-bv.rule=Host(`www.kibana.lan`)
-            - traefik.http.services.kibana-bv.loadbalancer.server.port=5601
+            - traefik.http.routers.kibana.rule=Host(`www.kibana.lan`)
+            - traefik.http.services.kibana.loadbalancer.server.port=5601
         links:
             - elasticsearch
         depends_on:
@@ -120,8 +120,8 @@ services:
             MH_STORAGE: maildir
         labels:
             - traefik.enable=true
-            - traefik.http.routers.mailhog-bv.rule=Host(`www.mailhog.lan`)
-            - traefik.http.services.mailhog-bv.loadbalancer.server.port=8025
+            - traefik.http.routers.mailhog.rule=Host(`www.mailhog.lan`)
+            - traefik.http.services.mailhog.loadbalancer.server.port=8025
         volumes:
             # if you develop on Linux, you may use a bind-mounted host directory instead
             # - ./data/mailhog:/maildir:rw
@@ -136,7 +136,8 @@ services:
             USER_GROUP: ${USER_GROUP}
         labels:
             - traefik.enable=true
-            - traefik.http.routers.magento-bv.rule=Host(`www.magento.lan`)
+            - traefik.http.routers.magento.rule=Host(`www.magento.lan`)
+            - traefik.http.services.magento.loadbalancer.server.port=8080
         links:
             - mysql
             - redis-cache
