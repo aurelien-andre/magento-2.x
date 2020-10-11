@@ -31,12 +31,18 @@ Change auth.json.dist into auth.json with good data.
 }
 ```
 
+Run all installation requirements 
+
+```shell
+make install
+```
+
 Open phpmyadmin and import "data/dump/install.sql" in "magento" database. 
 
 ## Usages
 
 Show make commands
-```
+```shell
 make help
 
 DOCKER             
