@@ -1,24 +1,15 @@
 #!/bin/bash
 set -e
 
+: "${APACHE_ENVVARS:=/usr/bin/apache2-env}"
+if test -f "$APACHE_ENVVARS"; then
+	. "$APACHE_ENVVARS"
+fi
+
 : "${APACHE_RUN_DIR:=/var/run/apache2}"
 : "${APACHE_PID_FILE:=$APACHE_RUN_DIR/apache2.pid}"
 rm -f "$APACHE_PID_FILE"
 
-for e in "${!APACHE_@}"; do
-	if [[ "$e" == *_DIR ]] && [[ "${!e}" == /* ]]; then
-    for dir in "${!e}"; do
-      mkdir -p "$dir"
-      setfacl -R \
-        -m u:"${APACHE_RUN_USER}":rwX \
-        -m u:"${USER_ID}":rwX \
-        "$dir"
-      setfacl -dR \
-        -m u:"${APACHE_RUN_USER}":rwX \
-        -m u:"${USER_ID}":rwX \
-        "$dir"
-    done
-	fi
-done
+perms-loader
 
 exec apache2 -DFOREGROUND "$@"

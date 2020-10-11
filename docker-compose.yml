@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2.2'
 
 services:
 
@@ -25,6 +25,8 @@ services:
         labels:
             - traefik.enable=false
         volumes:
+            # if you develop on Linux, you may use a bind-mounted host directory instead
+            # - ./data/mysql:/var/lib/mysql:rw
             - mysql_data:/var/lib/mysql:rw
 
     phpmyadmin:
@@ -48,6 +50,8 @@ services:
         labels:
             - traefik.enable=false
         volumes:
+            # if you develop on Linux, you may use a bind-mounted host directory instead
+            # - ./data/redis-cache:/data:rw
             - redis_cache_data:/data:rw
 
     redis-session:
@@ -55,9 +59,11 @@ services:
         labels:
             - traefik.enable=false
         volumes:
+            # if you develop on Linux, you may use a bind-mounted host directory instead
+            # - ./data/redis-session:/data:rw
             - redis_session_data:/data:rw,delegated
 
-    redisinsight:
+    redis-insight:
         image: redislabs/redisinsight:latest
         labels:
             - traefik.enable=true
@@ -70,7 +76,9 @@ services:
             - redis-cache
             - redis-session
         volumes:
-            - redisinsight_data:/db:rw,delegated
+            # if you develop on Linux, you may use a bind-mounted host directory instead
+            # - ./data/redis-insight:/db:rw
+            - redis_insight_data:/db:rw,delegated
 
     elasticsearch:
         image: elasticsearch:7.8.1
@@ -81,6 +89,8 @@ services:
             - traefik.http.routers.elasticsearch-bv.rule=Host(`www.elasticsearch.lan`)
             - traefik.http.services.elasticsearch-bv.loadbalancer.server.port=9200
         volumes:
+            # if you develop on Linux, you may use a bind-mounted host directory instead
+            # - ./data/elasticsearch:/usr/share/elasticsearch/data:rw
             - elasticsearch_data:/usr/share/elasticsearch/data:rw,delegated
 
     kibana:
@@ -113,6 +123,8 @@ services:
             - traefik.http.routers.mailhog-bv.rule=Host(`www.mailhog.lan`)
             - traefik.http.services.mailhog-bv.loadbalancer.server.port=8025
         volumes:
+            # if you develop on Linux, you may use a bind-mounted host directory instead
+            # - ./data/mailhog:/maildir:rw
             - mailhog_data:/maildir:rw,delegated
 
     magento:
@@ -147,6 +159,6 @@ volumes:
     mysql_data:
     redis_cache_data:
     redis_session_data:
-    redisinsight_data:
+    redis_insight_data:
     elasticsearch_data:
     mailhog_data:

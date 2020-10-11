@@ -1,0 +1,22 @@
+#!/bin/bash
+
+: "${PERMS_FILE:=/tmp/perms.txt}"
+if [ -z "$(ls -A "$PERMS_FILE" 2> /dev/null)" ]; then
+	touch "$PERMS_FILE"
+fi
+
+for element in $(cat "$PERMS_FILE"); do
+  if [[ "$element" == /* ]]; then
+    mkdir -p "$element"
+    setfacl -R \
+      -m u:"$(whoami)":rwX \
+      -m u:"${USER_ID}":rwX \
+      -m u:"${APACHE_RUN_USER}":rwX \
+      "$element"
+    setfacl -dR \
+      -m u:"$(whoami)":rwX \
+      -m u:"${USER_ID}":rwX \
+      -m u:"${APACHE_RUN_USER}":rwX \
+      "$element"
+  fi
+done

@@ -1,18 +1,10 @@
 FROM debian:buster-slim
 
-ENV APACHE_PID_FILE='/var/run/apache2/apache2.pid' \
-    APACHE_RUN_DIR='/var/run/apache2' \
-    APACHE_LOCK_DIR='/var/lock/apache2' \
-    APACHE_LOG_DIR='/var/log/apache2' \
-    APACHE_ROOT_DIR='/var/www/html' \
-    APACHE_RUN_USER='www-data' \
-    APACHE_RUN_GROUP='www-data' \
-    LANG='C' \
-    USER_ID='1000' \
+ENV USER_ID='1000' \
     USER_GROUP='1000' \
-    K8S_NAMESPACE='local' \
-    K8S_NODE='local' \
-    K8S_POD='magento' \
+    KUBERNETES_NAMESPACE='local' \
+    KUBERNETES_NODE='local' \
+    KUBERNETES_POD='magento' \
     MAGE_MODE='developer' \
     MAGE_RUN_CODE='base' \
     MAGE_RUN_TYPE='website' \
@@ -93,11 +85,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 
 RUN chmod +x -R /usr/bin
 
-RUN chmod 644 /etc/cron.d/magento
+RUN perms-writer \
+'/var/run/apache2' \
+'/var/lock/apache2' \
+'/var/log/apache2' \
+'/var/www/html'
 
-COPY --chown=www-data:www-data . /var/www/html
+COPY src /var/www/html
 
-EXPOSE 80
+EXPOSE 8080
 
 WORKDIR /var/www/html
 

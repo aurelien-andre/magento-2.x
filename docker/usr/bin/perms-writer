@@ -1,0 +1,12 @@
+#!/bin/bash
+
+: "${PERMS_FILE:=/tmp/perms.txt}"
+if [ -z "$(ls -A "$PERMS_FILE" 2> /dev/null)" ]; then
+	touch "$PERMS_FILE"
+fi
+
+for element in "$@"; do
+  if [[ "$element" == /* ]]; then
+    echo "$element" >> "$PERMS_FILE"
+	fi
+done
