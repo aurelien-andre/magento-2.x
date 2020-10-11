@@ -18,7 +18,9 @@ Copy rules
 127.0.0.1       www.mailhog.lan
 ```
 
-Open phpmyadmin and import "data/dump/install.sql" in "magento" database
+Open phpmyadmin and import "data/dump/install.sql" in "magento" database. 
+
+Change auth.json.dist into auth.json with your auth information.
 
 ## Usages
 
