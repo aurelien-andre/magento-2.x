@@ -128,7 +128,7 @@ services:
             - mailhog_data:/maildir:rw,delegated
 
     magento:
-        image: magento-v2.x:latest
+        image: aurelienandre/magento:latest
         env_file:
             - .env
         environment:
