@@ -1,6 +1,7 @@
 FROM debian:buster-slim
 
-ENV USER_ID='1000' \
+ENV \
+USER_ID='1000' \
 USER_GROUP='1000' \
 KUBERNETES_NAMESPACE='local' \
 KUBERNETES_NODE='local' \
