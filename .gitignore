@@ -1,13 +1,13 @@
 /.idea
-/scr/.buildpath
+/.buildpath
 /.cache
 /.metadata
 /.project
 /.settings
 /.vscode
+/.env
 /auth.json
 /nbproject
-/robots.txt
 /pub/robots.txt
 /sitemap
 /sitemap.xml
