@@ -11,8 +11,11 @@ export USER_ID
 export USER_GROUP
 export USER_NAME
 
-DOCKER_REGISTRY_REPOSITORY ?= aurelienandre/magento
-DOCKER_REGISTRY_TAG        ?= latest
+DOCKER_REGISTRY_REPOSITORY 	?= aurelienandre/magento
+DOCKER_REGISTRY_TAG        	?= latest
+DOCKER_IMAGE				?= $(DOCKER_REGISTRY_REPOSITORY):$(DOCKER_REGISTRY_TAG)
+
+export DOCKER_IMAGE
 
 COMPOSE_MAGENTO             = docker-compose exec magento
 COMPOSE_MAGENTO_COMPOSER	= docker-compose exec magento composer
@@ -25,10 +28,10 @@ help:
 ##DOCKER
 
 docker-build: ## Build docker image
-	docker build . -t $(DOCKER_REGISTRY_REPOSITORY):$(DOCKER_REGISTRY_TAG)
+	docker build . -t $(DOCKER_IMAGE)
 
 docker-push: ## Push docker image
-	docker push $(DOCKER_REGISTRY_REPOSITORY):$(DOCKER_REGISTRY_TAG)
+	docker push $(DOCKER_IMAGE)
 
 docker-up: ## Launch containers
 	docker-compose up -d

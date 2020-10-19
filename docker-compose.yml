@@ -128,7 +128,7 @@ services:
             - mailhog_data:/maildir:rw,delegated
 
     magento:
-        image: aurelienandre/magento:latest
+        image: ${DOCKER_IMAGE}
         env_file:
             - .env
         environment:
