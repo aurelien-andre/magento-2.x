@@ -1,6 +1,6 @@
 ![magento 2](/data/dist/m2-logo.png)
 
-## Environments
+## Docker image
 
 | Service           | Version       |
 | ----------------- | ------------- |
@@ -8,6 +8,7 @@
 | Apache            | 2.4           |
 | PHP               | 7.4           |
 | NodeJs            | 12            |
+| Magento           | 2.4           |
 | Composer          | latest        |
 
 ## Install
