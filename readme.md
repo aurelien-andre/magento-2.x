@@ -65,12 +65,19 @@ make help
 DOCKER             
 docker-build         Build docker image
 docker-push          Push docker image
-docker-up            Launch all containers
-docker-down          Stop all containers
+docker-up            Launch containers
+docker-down          Stop containers
 INSTALL            
 install-file         Install all files dependencies
 install-composer     Install composer dependencies
-install-npm          Install Npm
-install-grunt        Install Grunt
+install-npm          Install npm
+install-grunt        Install grunt
 install              Install all
+```
+
+Admin authenticate 
+
+```text
+Login       : admin
+Password    : admin123
 ```
