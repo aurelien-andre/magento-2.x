@@ -1,5 +1,15 @@
 ![magento 2](/data/dist/m2-logo.png)
 
+## Environments
+
+| Service           | Version       |
+| ----------------- | ------------- |
+| OS                | debian-slim   |
+| Apache            | 2.4           |
+| PHP               | 7.4           |
+| NodeJs            | 12            |
+| Composer          | latest        |
+
 ## Install
 
 Open hosts
