@@ -5,11 +5,11 @@ SHELL = /bin/sh
 
 USER_ID     := $(shell id -u)
 USER_GROUP  := $(shell id -g)
-USERNAME    := $(whoami)
+USER_NAME   := $(shell whoami)
 
 export USER_ID
 export USER_GROUP
-export USERNAME
+export USER_NAME
 
 DOCKER_REGISTRY_REPOSITORY ?= aurelienandre/magento
 DOCKER_REGISTRY_TAG        ?= latest
@@ -39,7 +39,7 @@ docker-down: ## Stop containers
 ##INSTALL
 
 install-file: ## Install files dependencies
-	cp -rf src/app/etc/env.php.sample src/app/etc/env.php
+	cp -rf app/etc/env.php.sample app/etc/env.php
 
 install-composer: ## Install composer dependencies
 	$(COMPOSE_MAGENTO_COMPOSER) install --no-progress --no-suggest --no-interaction --no-scripts

@@ -11,10 +11,6 @@
         "sort-packages": true
     },
     "require": {
-        "magento/product-community-edition": "2.4.0",
-        "magento/composer-root-update-plugin": "~1.0"
-    },
-    "require-dev": {
         "php": "^7.4",
         "ext-bcmath": "*",
         "ext-ctype": "*",
@@ -32,6 +28,11 @@
         "ext-xsl": "*",
         "ext-zip": "*",
         "ext-sockets": "*",
+        "magento/composer-root-update-plugin": "~1.0",
+        "magento/product-community-edition": "2.4.0",
+        "ruflin/elastica": "^7.0"
+    },
+    "require-dev": {
         "allure-framework/allure-phpunit": "~1.2.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
         "friendsofphp/php-cs-fixer": "~2.16.0",
@@ -40,7 +41,6 @@
         "magento/magento2-functional-testing-framework": "^3.0",
         "pdepend/pdepend": "~2.7.1",
         "phpcompatibility/php-compatibility": "^9.3",
-        "phpmd/phpmd": "^2.8.0",
         "phpstan/phpstan": ">=0.12.3 <=0.12.23",
         "phpunit/phpunit": "^9",
         "sebastian/phpcpd": "~5.0.0",

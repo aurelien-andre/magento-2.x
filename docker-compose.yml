@@ -134,6 +134,7 @@ services:
         environment:
             USER_ID: ${USER_ID}
             USER_GROUP: ${USER_GROUP}
+            USER_NAME: ${USER_NAME}
         labels:
             - traefik.enable=true
             - traefik.http.routers.magento.rule=Host(`www.magento.lan`)
