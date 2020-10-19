@@ -2,17 +2,18 @@
 set -e
 
 : "${PERMS_LOADER:=/usr/bin/perms-loader}"
+: "${APACHE_ENVVARS:=/usr/bin/apache2-env}"
+: "${APACHE_RUN_DIR:=/var/run/apache2}"
+: "${APACHE_PID_FILE:=$APACHE_RUN_DIR/apache2.pid}"
+
 if test -f "$PERMS_LOADER"; then
 	. "$PERMS_LOADER"
 fi
 
-: "${APACHE_ENVVARS:=/usr/bin/apache2-env}"
 if test -f "$APACHE_ENVVARS"; then
 	. "$APACHE_ENVVARS"
 fi
 
-: "${APACHE_RUN_DIR:=/var/run/apache2}"
-: "${APACHE_PID_FILE:=$APACHE_RUN_DIR/apache2.pid}"
 rm -f "$APACHE_PID_FILE"
 
 exec apache2 -DFOREGROUND "$@"

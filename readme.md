@@ -37,6 +37,12 @@ Run all installation requirements
 make install
 ```
 
+Import Magento configs
+
+```shell
+docker-compose exec magento bin/magento app:config:import
+```
+
 Open phpmyadmin and import "data/dump/install.sql" in "magento" database. 
 
 ## Usages

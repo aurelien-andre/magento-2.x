@@ -1,6 +1,8 @@
 #!/bin/bash
+set -e
 
 : "${PERMS_FILE:=/tmp/perms.txt}"
+
 if [ -z "$(ls -A "$PERMS_FILE" 2> /dev/null)" ]; then
 	touch "$PERMS_FILE"
 fi
