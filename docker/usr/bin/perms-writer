@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-: "${PERMS_FILE:=/tmp/perms.txt}"
-
+: "${PERMS_DIRECTORY:=/usr/src}"
+: "${PERMS_FILE:=$PERMS_DIRECTORY/perms.txt}"
 if [ -z "$(ls -A "$PERMS_FILE" 2> /dev/null)" ]; then
 	touch "$PERMS_FILE"
 fi

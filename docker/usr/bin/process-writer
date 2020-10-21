@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+: "${PRORCESSES_DIRECTORY:=/usr/src}"
+: "${PRORCESSES_FILE:=$PRORCESSES_DIRECTORY/processes.txt}"
+if [ -z "$(ls -A "$PRORCESSES_FILE" 2> /dev/null)" ]; then
+	touch "$PRORCESSES_FILE"
+fi
+
+for element in "$@"; do
+  echo "$element" >> "$PRORCESSES_FILE"
+done

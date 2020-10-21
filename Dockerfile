@@ -3,9 +3,6 @@ FROM debian:buster-slim
 ENV \
 USER_ID='1000' \
 USER_GROUP='1000' \
-KUBERNETES_NAMESPACE='local' \
-KUBERNETES_NODE='local' \
-KUBERNETES_POD='magento' \
 MAGE_MODE='developer' \
 MAGE_RUN_CODE='base' \
 MAGE_RUN_TYPE='website' \
@@ -17,17 +14,7 @@ MYSQL_DATABASE='magento' \
 REDIS_SESSION_HOST='redis-session' \
 REDIS_SESSION_PORT='6379' \
 REDIS_CACHE_HOST='redis-cache' \
-REDIS_CACHE_PORT='6379' \
-SMTP_HOST='mailhog' \
-SMTP_PORT='1025' \
-ELASTICSEARCH_HOST='elasticsearch' \
-ELASTICSEARCH_PORT='9200' \
-ELASTICSEARCH_PREFIX='bureauvalle' \
-ELASTICSEARCH_ENABLE_AUTH='0' \
-ELASTICSEARCH_USERNAME='www-data' \
-ELASTICSEARCH_PASSWORD='www-password' \
-RABBITMQ_USER='www-data' \
-RABBITMQ_PASSWORD='www-password'
+REDIS_CACHE_PORT='6379'
 
 RUN apt-get update \
 &&  apt-get install -y --no-install-recommends \
@@ -77,20 +64,29 @@ php7.4-zip
 COPY docker /
 
 RUN a2dissite default-ssl.conf \
+&&  a2dismod ssl \
 &&  a2enmod rewrite \
 &&  a2enmod headers
-
-RUN rm -rf /var/www/html/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
 RUN chmod +x -R /usr/bin
 
 RUN perms-writer \
+'/usr/bin' \
+'/etc/supervisor' \
+'/var/run/supervisor' \
+'/var/lock/supervisor' \
+'/var/log/supervisor' \
+'/etc/apache2' \
 '/var/run/apache2' \
 '/var/lock/apache2' \
 '/var/log/apache2' \
 '/var/www/html'
+
+RUN process-writer \
+'perms-loader' \
+'apache2-foreground'
 
 COPY --chown=www-data:www-data . /var/www/html
 
@@ -98,4 +94,4 @@ EXPOSE 8080
 
 WORKDIR /var/www/html
 
-CMD ["apache2-foreground"]
+CMD ["process-loader"]

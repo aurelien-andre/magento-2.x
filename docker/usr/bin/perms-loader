@@ -1,26 +1,27 @@
 #!/bin/bash
 set -e
 
-: "${PERMS_FILE:=/tmp/perms.txt}"
-: "${APACHE_RUN_USER:=www-data}"
-
+: "${PERMS_DIRECTORY:=/usr/src}"
+: "${PERMS_FILE:=$PERMS_DIRECTORY/perms.txt}"
 if [ -z "$(ls -A "$PERMS_FILE" 2> /dev/null)" ]; then
 	touch "$PERMS_FILE"
 fi
 
+: "${WHOAMI:=$(whoami)}"
+: "${USERNAME:=www-data}"
 for element in $(cat "$PERMS_FILE"); do
   if [[ "$element" == /* ]]; then
     (>&2 echo "Change perms for '$element'")
     mkdir -p "$element"
     setfacl -R \
-      -m u:"$(whoami)":rwX \
       -m u:"${USER_ID}":rwX \
-      -m u:"${APACHE_RUN_USER}":rwX \
+      -m u:"${WHOAMI}":rwX \
+      -m u:"${USERNAME}":rwX \
       "$element"
     setfacl -dR \
-      -m u:"$(whoami)":rwX \
       -m u:"${USER_ID}":rwX \
-      -m u:"${APACHE_RUN_USER}":rwX \
+      -m u:"${WHOAMI}":rwX \
+      -m u:"${USERNAME}":rwX \
       "$element"
   fi
 done
