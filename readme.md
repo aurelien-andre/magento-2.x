@@ -1,6 +1,6 @@
 ![magento 2](/data/dist/m2-logo.png)
 
-## Requirements
+## Requirements
 
 | Service           | Version |
 | ----------------- | ------- |
@@ -22,11 +22,13 @@
 ## Install
 
 Open hosts
+
 ```
 sudo nano /etc/hosts
 ```
 
 Copy rules
+
 ```
 127.0.0.1       www.traefik.lan
 127.0.0.1       www.phpmyadmin.lan
@@ -56,13 +58,17 @@ Run all installation requirements
 make install
 ```
 
+Import database
+
+```text
+Open phpmyadmin and import "data/dump/install.sql" in "magento" database. 
+```
+
 Import Magento configs
 
 ```shell
 docker-compose exec magento bin/magento app:config:import
 ```
-
-Open phpmyadmin and import "data/dump/install.sql" in "magento" database. 
 
 ## Usages
 
