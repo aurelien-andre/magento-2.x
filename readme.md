@@ -1,6 +1,14 @@
 ![magento 2](/data/dist/m2-logo.png)
 
-## Docker image
+## Requirements
+
+| Service           | Version |
+| ----------------- | ------- |
+| OS Unix           | *       |
+| Docker            | 19      |
+| Docker-Compose    | 1.27    |
+
+## Image
 
 | Service           | Version       |
 | ----------------- | ------------- |
