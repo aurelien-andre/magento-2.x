@@ -73,15 +73,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 RUN chmod +x -R /usr/bin
 
 RUN perms-writer \
-'/usr/bin' \
-'/etc/supervisor' \
-'/var/run/supervisor' \
-'/var/lock/supervisor' \
-'/var/log/supervisor' \
-'/etc/apache2' \
-'/var/run/apache2' \
-'/var/lock/apache2' \
-'/var/log/apache2' \
 '/var/www/html'
 
 RUN process-writer \
