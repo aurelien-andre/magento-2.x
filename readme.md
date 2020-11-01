@@ -82,7 +82,7 @@ docker-push          Push docker image
 docker-up            Launch containers
 docker-down          Stop containers
 INSTALL            
-install-file         Install all files dependencies
+install-file         Install files dependencies
 install-composer     Install composer dependencies
 install-npm          Install npm
 install-grunt        Install grunt
