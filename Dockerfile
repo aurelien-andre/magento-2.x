@@ -68,7 +68,7 @@ RUN a2dissite default-ssl.conf \
 &&  a2enmod rewrite \
 &&  a2enmod headers
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer --version=1.10.20
 
 RUN chmod +x -R /usr/bin
 
