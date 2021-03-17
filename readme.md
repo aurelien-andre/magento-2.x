@@ -17,26 +17,27 @@
 | PHP               | 7.4           |
 | NodeJs            | 12            |
 | Magento           | 2.4           |
-| Composer          | latest        |
+| Composer          | 1.10          |
 
 ## Install
 
 Open hosts
 
-```
+``` shell
 sudo nano /etc/hosts
 ```
 
 Copy rules
 
-```
+``` shell
 127.0.0.1       www.traefik.lan
-127.0.0.1       www.phpmyadmin.lan
-127.0.0.1       www.magento.lan
-127.0.0.1       www.redisinsight.lan
-127.0.0.1       www.kibana.lan
-127.0.0.1       www.elasticsearch.lan
 127.0.0.1       www.mailhog.lan
+127.0.0.1       www.phpmyadmin.lan
+127.0.0.1       www.redisinsight.lan
+127.0.0.1       www.elasticsearch.lan
+127.0.0.1       www.kibana.lan
+127.0.0.1       www.rabbitmq.lan
+127.0.0.1       www.magento.lan
 ```
 
 Change auth.json.dist into auth.json with good data.
@@ -61,7 +62,7 @@ make install
 Import database
 
 ```text
-Open phpmyadmin and import "data/dump/install.sql" in "magento" database. 
+Open phpmyadmin and import "data/mysql/dump/install.sql" in "magento" database. 
 ```
 
 Import Magento configs
@@ -94,4 +95,10 @@ Admin authenticate
 ```text
 Login       : admin
 Password    : admin123
+```
+
+Varnish clear cache
+
+```
+docker-compose exec varnish varnishadm "ban req.http.host == www.magento.lan"
 ```
