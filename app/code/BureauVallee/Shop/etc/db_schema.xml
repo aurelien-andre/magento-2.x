@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="shop"
+           resource="default"
+           engine="innodb"
+           comment="Shops">
+        <column xsi:type="int"
+                name="entity_id"
+                padding="11"
+                unsigned="false"
+                nullable="false"
+                identity="true"
+                comment="Entity ID"
+        />
+        <column xsi:type="smallint"
+                name="store_id"
+                padding="5"
+                unsigned="true"
+                nullable="false"
+                default="0"
+                comment="Store ID"
+        />
+        <column xsi:type="varchar"
+                name="code"
+                nullable="false"
+                length="32"
+                comment="Code"
+        />
+        <column xsi:type="varchar"
+                name="name"
+                nullable="false"
+                length="32"
+                comment="Name"
+        />
+        <column xsi:type="varchar"
+                name="geolocation"
+                nullable="false"
+                length="32"
+                comment="Geolocation"
+        />
+        <column xsi:type="smallint"
+                name="is_enabled"
+                padding="2"
+                unsigned="true"
+                nullable="false"
+                default="1"
+                comment="Is Enabled"
+        />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="SHOP_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>
