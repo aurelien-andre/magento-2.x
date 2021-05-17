@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Pictime_Adminhtml::pictime"
+             title="Pictime"
+             translate="title"
+             module="Pictime_Adminhtml"
+             sortOrder="60"
+             dependsOnModule="Pictime_Adminhtml"
+             resource="Pictime_Adminhtml::pictime"/>
+        <add id="Pictime_Adminhtml::zoning"
+             title="Zoning"
+             translate="title"
+             module="Pictime_Adminhtml"
+             sortOrder="10"
+             parent="Pictime_Adminhtml::pictime"
+             dependsOnModule="Pictime_Adminhtml"
+             resource="Magento_Catalog::zoning"/>
+    </menu>
+</config>

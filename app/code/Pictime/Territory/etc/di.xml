@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Pictime\Territory\Api\Data\TerritoryInterface"
+                type="Pictime\Territory\Model\Entity\Territory"/>
+    <preference for="Pictime\Territory\Api\Data\TerritorySearchResultsInterface"
+                type="Pictime\Territory\Model\ResourceModel\TerritorySearchResults"/>
+    <preference for="Pictime\Territory\Model\Converter\TerritoryConverterInterface"
+                type="Pictime\Territory\Model\Converter\TerritoryConverter"/>
+    <preference for="Pictime\Territory\Api\TerritoryRepositoryInterface"
+                type="Pictime\Territory\Model\Repository\TerritoryRepository"/>
+    <preference for="Pictime\Territory\Api\TerritoryManagementInterface"
+                type="Pictime\Territory\Model\Management\TerritoryManagement"/>
+
+    <virtualType name="Pictime\Territory\Ui\DataProvider\Territory\ListingDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"/>
+
+    <virtualType name="Pictime\Territory\Ui\DataProvider\Territory\FormDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"/>
+
+    <virtualType name="Pictime\Territory\Model\ResourceModel\Territory\Listing\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">
+                pictime_territory
+            </argument>
+            <argument name="resourceModel" xsi:type="string">
+                Pictime\Territory\Model\ResourceModel\Territory
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Pictime\Territory\Model\ResourceModel\Territory\Form\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">
+                pictime_territory
+            </argument>
+            <argument name="resourceModel" xsi:type="string">
+                Pictime\Territory\Model\ResourceModel\Territory
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pictime_territory_listing_data_source" xsi:type="string">
+                    Pictime\Territory\Model\ResourceModel\Territory\Listing\Collection
+                </item>
+                <item name="pictime_territory_form_data_source" xsi:type="string">
+                    Pictime\Territory\Model\ResourceModel\Territory\Form\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
